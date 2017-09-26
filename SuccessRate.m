@@ -30,12 +30,13 @@ coe = cos(oe);
 % This value is used to avoid numeric issues when
 % testing the success of the algorithm.
 num_eps = 1e-12;
-pool_obj = parpool(4); % quad-core CPU
+numberOfCores = 4; % quad-core CPU
+pool_obj = parpool(numberOfCores);
 parfor i = 1:numSpline
     if isWCS
-        O = nrbs{i}.coefs(1:3, cornerIndex); % Corner point is the third point.
+        O = nrbs{i}.coefs(1:3, cornerIndex); % Corner point.
     else
-         % Corner point is the fourth point.
+         % Corner point.
         O = Ori(nrbs{i}.coefs(1, cornerIndex), nrbs{i}.coefs(2, cornerIndex));
     end
     ce = 0.0;
@@ -48,7 +49,7 @@ parfor i = 1:numSpline
             o = Ori(p(1), p(2));
             cet = O' * o;
         end
-        % Minimum angle bewteen the sampled points and
+        % Minimum angle between the sampled points and
         % O.
         if (cet > ce)
             ce = cet;

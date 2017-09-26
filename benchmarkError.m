@@ -13,9 +13,11 @@ cutterDataWCS = zeros(6, numberOfData);
 numberOfTest = 1;
 elapsedTime = zeros(2, numberOfTest);
 for k = 1:numberOfTest
-    r = rand(1, numberOfData);
+    r = rand(5, numberOfData);
     for i = 1:numberOfData
-        cutterDataMCS(:, i) = strides(:, 1)*(1-r(i) ) + strides(:, 2)*r(i) ;
+        for m = 1:5
+            cutterDataMCS(m, i) = strides(m, 1)*(1-r(m, i) ) + strides(m, 2)*r(m, i) ;
+        end
         cutterDataWCS(:, i) = FKT(cutterDataMCS(:, i), mp);
     end
     tic;
@@ -38,27 +40,40 @@ eaYang  = rad2deg(eaYang);
 emYang = rad2deg(emYang);
 emMeanPro = mean(emPro);
 emMeanYang = mean(emYang);
-eamMeanPro = mean(eaPro ./ emPro);
-eamMeanYang = mean(eaYang ./ emYang);
+ratioPro = eaPro ./ emPro;
+eamMeanPro = mean(ratioPro);
+ratioYang = eaYang ./ emYang;
+eamMeanYang = mean(ratioYang);
 xaxis = 1:1:(numberOfData-2);
 %% Draw figures
-figure('Name', 'Proposed');
-plot(xaxis, eaPro, 'r-', xaxis, emPro, 'b-.');
+figure('Name', 'Proposed: corner error');
+plot(xaxis, emPro, 'r+');
 hold on;
 plot( [1, numberOfData-2], rad2deg([oe, oe]), 'k-.', 'LineWidth', 1.5);
-legend('\epsilon_{O,F}', '\epsilon_{O,E}', '\epsilon_o*');
 hold off;
-ylim([0, rad2deg(oe)+0.01]);
-xlabel('{\itInstance}');
-ylabel('{\itError(deg)}');
+ylim([0, rad2deg(oe)+0.005]);
+xlabel('{\bfCorner Instance}');
+ylabel('{\bf\epsilon_{O,E}}{\it(deg)}');
 set(gca, 'FontName', 'Times New Roman');
 
-figure('Name', 'Yang');
-plot(xaxis, eaYang, 'r-', xaxis, emYang, 'b-.');
+figure('Name', 'Yang: corner error');
+plot(xaxis, emYang, 'bo');
 hold on;
 plot( [1, numberOfData-2], rad2deg([oe, oe]), 'k-.', 'LineWidth', 1.5);
-legend('\epsilon_{O,F}', '\epsilon_{O,E}', '\epsilon_o*');
 hold off;
-xlabel('{\itInstance}');
-ylabel('{\itError(deg)}');
+xlabel('{\bfCorner Instance}');
+ylabel('{\bf\epsilon_{O,E}}{\it(deg)}');
+set(gca, 'FontName', 'Times New Roman');
+
+figure('Name', 'Proposed: error ratio');
+plot(xaxis, ratioPro, 'r*');
+xlabel('{\bfCorner Instance}');
+ylabel('{\bfError Ratio}');
+set(gca, 'FontName', 'Times New Roman');
+
+figure('Name', 'Yang: error ratio');
+plot(xaxis, ratioYang, 'bd');
+hold on;
+xlabel('{\bfCorner Instance}');
+ylabel('{\bfError Ratio}');
 set(gca, 'FontName', 'Times New Roman');
