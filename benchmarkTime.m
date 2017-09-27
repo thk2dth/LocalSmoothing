@@ -21,9 +21,8 @@ for n = 1:numberOfDuration
     for k = 1:numberOfTest
         r = rand(5, numberOfData);
         for i = 1:numberOfData
-            for m = 1:5
-                cutterDataMCS(m, i) = strides(m, 1)*(1-r(m, i) ) + strides(m, 2)*r(m, i) ;
-            end
+            cutterDataMCS(:, i) = strides(:, 1) .* (1-r(:, i) ) + ...
+            strides(:, 2) .* r(:, i);
             cutterDataWCS(:, i) = FKT(cutterDataMCS(:, i), mp);
         end
         tic;
