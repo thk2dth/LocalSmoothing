@@ -43,13 +43,13 @@ hold on;
 plot(xaxis, avgDuration(2, :) * 1000, 'b-.');
 hold off;
 legend('Proposed', 'Yang');
-xlabel('\bfCutter Data Number');
+xlabel('\bfNumber of Cutter Data');
 ylabel('{\bfConsuming Time}{\it(ms)}');
 set(gca, 'FontName', 'Times New Roman');
 
 effInc = avgDuration(2, :) ./ avgDuration(1, :) - 1;
 figure('Name', 'Ratio')
 plot(xaxis, effInc * 100, 'b', 'LineWidth', 1.5);
-xlabel('\bfCutter Data Number');
-ylabel('{\bfComputation Efficiency Increase}{\it(%)}');
+xlabel('\bfNumber of Cutter Data');
+ylabel('{\bfComputation Efficiency Improvement}{\it(%)}');
 set(gca, 'FontName', 'Times New Roman');
