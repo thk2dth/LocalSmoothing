@@ -32,6 +32,9 @@ Second, the two methods are compared with error control ability. A sufficiently 
 
 **Remark II.** We have stored the simulation results in two files (resultsConsumingTime.mat and resultsWithDataNumer2000.mat) in case the simulation process is too slow on some computers. The first file contains the information of the consuming time with respect to the cutter data number. The second file contains the information of the smoothing errors when smoothing 2000 cutter data. Since the cutter data is sampled randomly, the results can be slightly different.
 
-If you find these files useful, please cite our paper: Real-time local smoothing for five-axis linear toolpath considering smoothing error constraints. If you have any problem, feel free to contact us by the following information:
+If you find these files useful, please cite our paper:
+Jie Huang, Xu Du, Li-Min Zhu, Real-time local smoothing for five-axis linear toolpath considering smoothing error constraints, In International Journal of Machine Tools and Manufacture, Volume 124, 2018, Pages 67-79, ISSN 0890-6955, https://doi.org/10.1016/j.ijmachtools.2017.10.001.
+
+If you have any problem, feel free to contact us by the following information:
 Author, Jie Huang; Email, thk2dth@sjtu.edu.cn;
 Institution, State Key Laboratory of Mechanical System and Vibration, School of Mechanical Engineering, Shanghai Jiao Tong University, Shanghai 200240, P.R. China.
